@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(0, 0, 0);
+            padding: 15px;
+        }
+
+        .calculation {
+            color: white;
+            font-size: 45px;
+            margin: 15px 0 5px 0;
+        }
+
+        .calculator-button {
+            height: 60px;
+            width: 60px;
+            border-radius: 60px;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .grey-button {
+            background-color: rgb(51, 51, 51);
+            color: white;
+        }
+
+        .orange-button {
+            background-color: rgb(254, 160, 10);
+        }
+
+        .clear-button {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Calculation Box / Display the Calculation input -->
+    <p class="js-calculation calculation"></p>
+
+    <p>
+        <button class="calculator-button grey-button" onclick="updateCalculation('1')">1</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('2')">2</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('3')">3</button>
+        <button class="calculator-button orange-button" onclick="updateCalculation('+')">+</button>
+    </p>
+
+
+    <p>
+        <button class="calculator-button grey-button" onclick="updateCalculation('4')">4</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('5')">5</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('6')">6</button>
+        <button class="calculator-button orange-button" onclick="updateCalculation('-')">-</button>
+    </p>
+
+    <p>
+        <button class="calculator-button grey-button" onclick="updateCalculation('7')">7</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('8')">8</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('9')">9</button>
+        <button class="calculator-button orange-button" onclick="updateCalculation('*')">*</button>
+    </p>
+
+    <p>
+        <button class="calculator-button grey-button" onclick="updateCalculation('0')">0</button>
+        <button class="calculator-button grey-button" onclick="updateCalculation('.')">.</button>
+
+        <!-- ( = ) Result Button -->
+        <button class="calculator-button grey-button" 
+        onclick="calculation = eval(calculation);
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+        localStorage.setItem('calculation',calculation);
+        ">=</button>
+        <button class="calculator-button orange-button" onclick="updateCalculation('/')">/</button>
+    </p>
+
+    <p>
+
+         <!-- Clear Button -->
+        <button class="calculator-button grey-button clear-button" onclick="calculation=''; 
+        // Display the calculation on the page
+        // instead of console.log
+        displayCalculation();
+        localStorage.setItem('calculation',calculation);
+        ">clear</button>
+    </p>
+
+
+    <script>
+        //! Storing the calculation / calculation box 
+        let calculation = localStorage.getItem('calculation') || '';  //! Variabel calculation diinisialisasi dengan nilai dari localStorage. Jika tidak ada nilai yang tersimpan, maka diisi dengan string kosong ('').
+        
+        // Display the calculation when the page first loads.
+        displayCalculation(); //! Fungsi displayCalculation() dipanggil untuk menampilkan nilai awal calculation di tampilan saat halaman dimuat.
+
+        function updateCalculation(value) {
+            calculation += value;
+            // Display the calculation on the page
+            // instead of console.log
+            displayCalculation();
+            localStorage.setItem('calculation', calculation);
+            //! Fungsi ini menambahkan nilai tombol yang ditekan ke variabel calculation. //! Kemudian, fungsi displayCalculation() dipanggil untuk memperbarui tampilan. //! Nilai calculation juga disimpan ke localStorage.
+
+        }
+        //! Fungsi ini menambahkan nilai tombol yang ditekan ke variabel calculation.
+        function displayCalculation() {
+            document.querySelector('.js-calculation').innerHTML = calculation; //! Fungsi ini memperbarui teks di elemen dengan class .js-calculation sesuai dengan nilai calculation.
+        }
+    </script>
+</body>
+</html>
+
+
+
+<!-- Alur Kerja -->
+
+<!-- 
+Berikut adalah penjelasan alur kerja dan analisis kode aplikasi kalkulator JavaScript di atas, termasuk penjelasan baris per baris terutama pada bagian JavaScript.
+
+- Alur Kerja Aplikasi Kalkulator
+Aplikasi ini adalah kalkulator sederhana yang menggunakan HTML, CSS, dan JavaScript. Berikut adalah alur kerja utamanya:
+
+1. Tampilan Awal :
+Ketika halaman dimuat, nilai 'calculation' diambil dari localStorage. Jika tidak ada nilai yang tersimpan, maka 'calculation' diinisialisasi sebagai string kosong ('').
+Nilai calculation ditampilkan di elemen dengan class .js-calculation.
+
+2. Memperbarui Input :
+Ketika tombol angka (0-9), operator (+, -, *, /), atau titik (.) ditekan, fungsi updateCalculation(value) dipanggil.
+Fungsi ini menambahkan nilai tombol yang ditekan ke dalam variabel calculation.
+Setelah itu, nilai calculation diperbarui di tampilan dan disimpan ke localStorage.
+
+3. Menghitung Hasil :
+Ketika tombol = ditekan, fungsi eval() digunakan untuk menghitung hasil dari ekspresi matematika dalam calculation.
+Hasilnya kemudian ditampilkan di tampilan dan disimpan ke localStorage.
+
+
+4. Menghapus Input :
+Ketika tombol clear ditekan, nilai calculation direset menjadi string kosong (''), dan tampilan serta localStorage diperbarui.
+Penyimpanan Data :
+Semua perubahan pada calculation disimpan di localStorage, sehingga ketika halaman dimuat ulang, nilai sebelumnya tetap tersedia.
+
+
+- Kelebihan :
+Persistensi Data : Menggunakan localStorage sehingga input tetap tersimpan meskipun halaman dimuat ulang.
+Sederhana : Struktur kode mudah dipahami dan diimplementasikan.
+
+- Kekurangan :
+Penggunaan eval() : Penggunaan eval() berpotensi membuka celah keamanan jika aplikasi ini digunakan untuk input yang tidak terpercaya.
+Validasi Terbatas : Tidak ada validasi untuk input yang salah (misalnya, dua operator berturut-turut seperti ++ atau /0).
+
+Catatan Penting :
+
+- Flowchart ini menggambarkan alur utama program. Untuk implementasi lebih lanjut, Anda dapat menambahkan validasi input (misalnya, mencegah dua operator berturut-turut) atau fitur tambahan seperti riwayat kalkulasi.
+
+- Penggunaan eval() harus hati-hati karena berpotensi membuka celah keamanan jika digunakan dalam konteks yang lebih kompleks.
+
+
+Mulai
+  |
+Inisialisasi 'calculation' dari localStorage atau ''
+  |
+Tampilkan 'calculation' di layar
+  |
+Tunggu input tombol
+  |
+Apakah tombol ditekan?
+  |----(Ya)
+  |      |
+  |      v
+  |  Apakah tombol '='?
+  |      |----(Ya)
+  |      |      |
+  |      |      v
+  |      |  Hitung hasil dengan eval()
+  |      |      |
+  |      |      v
+  |      |  Simpan hasil ke 'calculation'
+  |      |      |
+  |      |      v
+  |      |  Tampilkan hasil di layar
+  |      |      |
+  |      |      v
+  |      |  Simpan hasil ke localStorage
+  |      |
+  |      |----(Tidak)
+  |             |
+  |             v
+  |         Apakah tombol 'clear'?
+  |             |----(Ya)
+  |             |      |
+  |             |      v
+  |             |  Reset 'calculation' ke ''
+  |             |      |
+  |             |      v
+  |             |  Simpan 'calculation' ke localStorage
+  |             |      |
+  |             |      v
+  |             |  Tampilkan 'calculation' di layar
+  |             |
+  |             |----(Tidak)
+  |                    |
+  |                    v
+  |                Tambahkan nilai tombol ke 'calculation'
+  |                    |
+  |                    v
+  |                Simpan 'calculation' ke localStorage
+  |                    |
+  |                    v
+  |                Tampilkan 'calculation' di layar
+  |
+  |----(Tidak)
+         |
+         v
+Kembali ke menunggu input
+
+
+
+
+ - Apa itu eval?
+eval adalah fungsi bawaan (built-in) dalam JavaScript yang digunakan untuk mengevaluasi atau menjalankan kode JavaScript yang ditulis dalam bentuk string. Dengan kata lain, eval mengambil string sebagai input, menganggapnya sebagai kode JavaScript, dan kemudian mengeksekusi kode tersebut.
+
+Kelebihan eval
+1. Fleksibilitas : eval memungkinkan Anda mengeksekusi kode dinamis yang tidak diketahui saat runtime
+
+2. Sederhana untuk Ekspresi Matematika : Dalam aplikasi seperti kalkulator, eval dapat digunakan untuk mengevaluasi ekspresi matematika secara langsung tanpa perlu menulis parser kompleks.
+
+Kekurangan eval
+1. Meskipun eval berguna, penggunaannya sering kali tidak direkomendasikan karena beberapa alasan berikut:
+
+2. Keamanan :
+Jika input untuk eval berasal dari pengguna (misalnya, melalui form atau API), maka ada risiko injeksi kode jahat .
+
+3. Performa :
+eval membuat JavaScript engine kesulitan mengoptimalkan kode karena ia harus mengevaluasi string pada runtime. Ini dapat menyebabkan penurunan performa.
+
+4. Debugging Sulit :
+Kode yang dieksekusi oleh eval tidak terlihat secara eksplisit dalam source code, sehingga sulit dilacak jika terjadi kesalahan.
+
+5.Penggunaan Berlebihan :
+eval sering kali digunakan sebagai solusi cepat, padahal banyak kasus bisa diselesaikan dengan cara yang lebih aman dan efisien (misalnya, menggunakan parser atau library khusus).
+
+-->
+
+
+<!-- 
+Kesimpulan
+1. math.js : Pilihan terbaik untuk aplikasi sederhana karena mudah digunakan dan aman.
+2.Function Constructor : Alternatif yang lebih aman daripada eval tetapi tetap rentan jika input tidak divalidasi.
+3. Parsing Manual : Pendekatan paling aman, tetapi implementasinya lebih kompleks.
+
+
+Perbandingan Pendekatan
+1. math.js
++ kelebihan : Aman dan mudah digunakan<br>- Mendukung banyak fitur matematika
+- kekurangan : Memerlukan library eksternal
+
+2. Function Constructor
++ kelebihan : Lebih aman daripada
+eval
++ Tidak memerlukan library eksternal
+- kekurangan : Masih rentan jika input tidak divalidasi
+
+3. Parsing Manual
++ kelebihan : Paling aman
++ Tidak bergantung pada library eksternal
+- kekurangan : Implementasi lebih kompleks
+- Terbatas pada operasi dasar
+
+Kesimpulan
+Untuk aplikasi sederhana, math.js adalah pilihan terbaik karena mudah digunakan dan aman.
+Jika Anda ingin menghindari library eksternal, gunakan Function Constructor atau Parsing Manual .
+-->
+

@@ -94,35 +94,42 @@
     </p>
 
     <script>
+        //! declare the variable for declaration box 
         let calculation = localStorage.getItem('calculation') || '';
 
         // Display the calculation when the page first loads.
         displayCalculation();
 
+        //! this function is called whne the number button or operator got pressed | Fungsi ini dipanggil ketika tombol angka atau operator ditekan.
         function updateCalculation(value) {
             calculation += value;
             displayCalculation();
             localStorage.setItem('calculation', calculation);
         }
 
+        //! this function is called when the '=' key is pressed  | Fungsi ini dipanggil ketika tombol = ditekan.
         function calculate() {
             try {
                 // Use Function Constructor to evaluate the expression
-                const result = new Function('return ' + calculation)();
-                calculation = result.toString();
-                displayCalculation();
-                localStorage.setItem('calculation', calculation);
+                const result = new Function('return ' + calculation)(); // Ini adalah inti dari proses perhitungan. Jika calculation = "2 + 3", maka new Function('return 2 + 3')() akan mengembalikan hasil 5.
+                calculation = result.toString(); //Hasil perhitungan disimpan kembali ke variabel calculation sebagai string.
+                displayCalculation(); //Fungsi ini dipanggil untuk memperbarui tampilan layar dengan hasil perhitungan.
+                localStorage.setItem('calculation', calculation); // Hasil perhitungan disimpan di localStorage agar tetap ada meskipun halaman direfresh.
+
             } catch (error) {
-                alert("Invalid expression");
+                alert("Invalid expression"); //Jika ekspresi matematika tidak valid (misalnya, "2++"), new Function() akan melemparkan error. Dalam kasus ini, pesan "Invalid expression" akan ditampilkan kepada pengguna.
+
             }
         }
 
+        //! this function is called when 'clear'button is pressed  | Fungsi ini dipanggil ketika tombol "Clear" ditekan.
         function clearCalculation() {
             calculation = '';
             displayCalculation();
             localStorage.setItem('calculation', calculation);
         }
 
+        //! this function is called when the page is load/reload and reload the expression that store on localStorage | Fungsi ini dipanggil saat halaman dimuat untuk menampilkan ekspresi yang tersimpan di localStorage. 
         function displayCalculation() {
             document.querySelector('.js-calculation').innerHTML = calculation || '0';
         }

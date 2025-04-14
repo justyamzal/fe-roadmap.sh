@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator with math.js</title>
+    <title>Calculator with Math.JS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Mengimpor library math.js , yang digunakan untuk melakukan perhitungan matematika secara aman dan fleksibel. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.min.js"></script>
 
     <style>
@@ -21,6 +22,12 @@
             font-family: Arial, Helvetica, sans-serif;
             background-color: rgb(0, 0, 0);
             padding: 15px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
         }
 
         .calculation {
@@ -56,53 +63,58 @@
 </head>
 
 <body>
-    <!-- Calculation Box / Display the Calculation input -->
-    <p class="js-calculation calculation"></p>
 
-    <p>
-        <button class="calculator-button grey-button" onclick="updateCalculation('1')">1</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('2')">2</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('3')">3</button>
-        <button class="calculator-button orange-button" onclick="updateCalculation('+')">+</button>
-    </p>
+    <div class="calc-container">
+        <!-- Calculation Box / Display the Calculation input -->
+        <p class="js-calculation calculation"></p>
 
-    <p>
-        <button class="calculator-button grey-button" onclick="updateCalculation('4')">4</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('5')">5</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('6')">6</button>
-        <button class="calculator-button orange-button" onclick="updateCalculation('-')">-</button>
-    </p>
+        <p>
+            <button class="calculator-button grey-button" onclick="updateCalculation('1')">1</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('2')">2</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('3')">3</button>
+            <button class="calculator-button orange-button" onclick="updateCalculation('+')">+</button>
+        </p>
 
-    <p>
-        <button class="calculator-button grey-button" onclick="updateCalculation('7')">7</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('8')">8</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('9')">9</button>
-        <button class="calculator-button orange-button" onclick="updateCalculation('*')">*</button>
-    </p>
+        <p>
+            <button class="calculator-button grey-button" onclick="updateCalculation('4')">4</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('5')">5</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('6')">6</button>
+            <button class="calculator-button orange-button" onclick="updateCalculation('-')">-</button>
+        </p>
 
-    <p>
-        <button class="calculator-button grey-button" onclick="updateCalculation('0')">0</button>
-        <button class="calculator-button grey-button" onclick="updateCalculation('.')">.</button>
+        <p>
+            <button class="calculator-button grey-button" onclick="updateCalculation('7')">7</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('8')">8</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('9')">9</button>
+            <button class="calculator-button orange-button" onclick="updateCalculation('*')">*</button>
+        </p>
 
-        <!-- ( = ) Result Button -->
-        <button class="calculator-button grey-button" onclick="calculate()">=</button>
-        <button class="calculator-button orange-button" onclick="updateCalculation('/')">/</button>
-    </p>
+        <p>
+            <button class="calculator-button grey-button" onclick="updateCalculation('0')">0</button>
+            <button class="calculator-button grey-button" onclick="updateCalculation('.')">.</button>
 
-    <p>
-        <!-- Clear Button -->
-        <button class="calculator-button grey-button clear-button" onclick="clearCalculation()">Clear</button>
-    </p>
+            <!-- ( = ) Result Button -->
+            <button class="calculator-button grey-button" onclick="calculate()">=</button>
+            <button class="calculator-button orange-button" onclick="updateCalculation('/')">/</button>
+        </p>
+
+        <p>
+            <!-- Clear Button -->
+            <button class="calculator-button grey-button clear-button" onclick="clearCalculation()">Clear</button>
+        </p>
+    </div>
 
     <script>
-        let calculation = localStorage.getItem('calculation') || '';
+        let calculation = localStorage.getItem('calculation') ||
+        ''; //! Variabel calculation menyimpan ekspresi matematika yang sedang ditulis oleh pengguna. Data ini diambil dari localStorage jika ada, atau kosong jika tidak ada.
 
         // Display the calculation when the page first loads.
         displayCalculation();
 
-        function updateCalculation(value) {
-            calculation += value;
-            displayCalculation();
+        function updateCalculation(value) { //! Fungsi ini dipanggil ketika tombol angka atau operator ditekan. 
+            calculation += value; //! Nilai tombol (value) ditambahkan ke variabel calculation. diperbarui.
+            displayCalculation
+        (); //! Kemudian, fungsi displayCalculation() dipanggil untuk memperbarui tampilan, dan localStorage 
             localStorage.setItem('calculation', calculation);
         }
 
@@ -117,16 +129,21 @@
                 alert("Invalid expression");
             }
         }
+        //! Fungsi ini dipanggil ketika tombol = ditekan. Ekspresi matematika dalam calculation dievaluasi menggunakan math.evaluate() dari library math.js. Hasilnya disimpan kembali ke variabel calculation dan ditampilkan di layar. Jika ekspresi tidak valid, akan muncul pesan kesalahan ("Invalid expression").
+
+
 
         function clearCalculation() {
             calculation = '';
             displayCalculation();
             localStorage.setItem('calculation', calculation);
         }
+        //Fungsi ini dipanggil ketika tombol "Clear" ditekan. Variabel calculation direset menjadi kosong, dan tampilan diupdate.
 
         function displayCalculation() {
             document.querySelector('.js-calculation').innerHTML = calculation || '0';
         }
+        //! Fungsi ini bertugas menampilkan isi dari variabel calculation di kotak tampilan. Jika calculation kosong, maka "0" akan ditampilkan sebagai default.
     </script>
 </body>
 

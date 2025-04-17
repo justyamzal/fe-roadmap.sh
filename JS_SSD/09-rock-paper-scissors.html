@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <h1>Rock Paper Scissors</h1>
+
+
+    <!-- this Implementation is using scale 
+    
+    |---------------|------------------|------------------|
+    0     [rock]   1/3   [paper]      2/3    [scissors]   1
+
+    if between 0  and 1/3 => rock
+    if between 1/3 and 2/3 => paper
+    if between 2/3 and 3/3 => scissors
+    -->
+
+    <!-- Rock, calling rock function -->
+    <button onclick="playGame('rock');">Rock</button>
+    
+    <!-- Paper, calling paper function -->
+    <button onclick="playGame('paper');">Paper</button>
+    
+    <!-- Scissors, calling scissors function -->
+    <button onclick="playGame('scissors');">Scissors</button>
+
+    <!-- #1 Score Display -->
+    <p class="js-result"></p>
+    <p class="js-moves"></p>
+    <p class="js-score"></p>
+
+    <!-- Button reset -->
+    <button onclick="
+    score.wins = 0;
+    score.losses = 0;
+    score.ties = 0;
+    localStorage.removeItem('score'); 
+    updateScoreElement();  /* after reseting the point,executing the function updateScoreElement to showing the result of reset */
+    ">Reset Score</button>
+
+    <script>
+    /*Algorithm (RPS) ;
+    when we click button 
+    1. computer randomly selects a move
+    2. compare the moves to get result
+    3. update a score
+    4. display the result in the popup
+    
+    */
+    // get item property score then parse become dom
+    let score = JSON.parse(localStorage.getItem('score')) || {  //LocalStorage : is used to save values more permanently so far we've been saving our values in variables
+        wins: 0,
+        losses: 0,
+        ties: 0
+    };
+    updateScoreElement();   // executing the function updateScoreElement when saving on the localstorage | Update the score display after resetting
+    //* After Resetting the Score , When the "Reset Score" button is clicked, the score is reset to zero (wins: 0, losses: 0, ties: 0), and the updateScoreElement() function is called to update the display with the reset values.
+    
+    /*
+    if (!score) {
+        score = {
+        wins: 0,
+        losses: 0,
+        ties: 0
+        };
+    }
+    */
+    function playGame(playerMove) {
+        const computerMove = pickComputerMove();
+        // Our Move Statement
+        let result = ''; //Variabel result digunakan untuk menyimpan hasil pertandingan (misalnya, 'Tie', 'You Win', atau 'You Lose').
+
+            // Rock
+            if (playerMove === 'rock') {
+                if (computerMove === 'rock') {
+                    result = 'Tie';
+                } else if (computerMove === 'paper') {
+                    result = 'You Lose';
+                } else if (computerMove === 'scissors') {
+                    result = 'You Win';
+                }
+                //Paper
+            } else if (playerMove === 'paper') {
+                if (computerMove === 'rock') {
+                    result = 'You Win';
+                } else if (computerMove === 'paper') {
+                    result = 'Tie';
+                } else if (computerMove === 'scissors') {
+                    result = 'You Lose';
+                }
+                // Scissors    
+            } else if (playerMove === 'scissors') {
+                if (computerMove === 'rock') {
+                    result = 'You Lose';
+                } else if (computerMove === 'paper') {
+                    result = 'You Win';
+                } else if (computerMove === 'scissors') {
+                    result = 'Tie';
+                }
+            }
+
+            // notify/caption for the score
+            if (result === 'You Win') {
+                score.wins += 1;
+            } else if (result === 'You Lose') {
+                score.losses += 1;
+            } else if (result === 'Tie') {
+                score.ties += 1;
+            }
+
+            // localStorage only supports strings, so it need stringify, ! set item score
+            localStorage.setItem('score', JSON.stringify(score)); //LocalStorage : is used to save values more permanently so far we've been saving our values in variables
+
+            //after playing it will execute score/showing the score | After Playing a Round
+            updateScoreElement();
+            //* When the player clicks one of the buttons (Rock, Paper, or Scissors), the playGame(playerMove) function is executed. Inside this function, after determining the result of the round and updating the score (score.wins, score.losses, or score.ties), the updateScoreElement() function is called to reflect the updated score on the webpage.
+
+            document.querySelector('.js-result').innerHTML = result;
+
+            document.querySelector('.js-moves').innerHTML = `You ${playerMove} - ${computerMove} Computer`;
+
+        
+        // alert(`You picked ${playerMove}. Computer pick ${computerMove}. ${result} // Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+    }
+    //! function renewing score/showing the score
+    function updateScoreElement() { 
+            document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+    //* The function updates the content of a specific HTML element (.js-score) with the current values of score.wins, score.losses, and score.ties. This ensures that the user always sees the most up-to-date score after each interaction (e.g., playing a round or resetting the score).
+    }
+
+
+    // function generate random select
+    function pickComputerMove() { //! function make our code more easier to update
+        const randomNumber = Math.random();
+        let computerMove = '';
+        // The Computer Move Statement 
+        if (randomNumber >= 0 && randomNumber < 1 / 3) {
+            // console.log('rock');
+            computerMove = 'rock'; //variable scope
+        } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+            // console.log('paper');
+            computerMove = 'paper';
+        } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
+            // console.log('scissors');
+            computerMove = 'scissors';
+        }
+        // console.log(computerMove);
+        return computerMove; // Mengembalikan pilihan komputer ke fungsi pemanggil.
+    }
+    </script>
+    
+</body>
+
+</html>

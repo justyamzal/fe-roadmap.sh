@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projects</title>
+</head>
+<body>
+
+    <!-- Subscribe button projects -->
+
+    <!-- 
+    Steps :
+    - when we click the button,
+    1. if the text is "subscribe" => "subscribed"
+    2. otherwise, change it back => "subscribe"
+    
+    -->
+    <p>Youtube Subscribe Button</p>
+    <button onclick="
+    subscribe();
+    " class="js-subscribe-button">Subscribe</button>
+
+    <!-- Amazon Shipping Calculator -->
+
+    <script>
+        // Subscribe button projects
+        function subscribe() {
+            const buttonElement = document.querySelector('.js-subscribe-button');
+
+            if (buttonElement.innerHTML === 'Subscribe') {
+                buttonElement.innerHTML = 'Subscribed';
+                buttonElement.classList.add('is-subscribed'); /*adding class is subscribed*/
+            } else {
+                buttonElement.innerHTML = 'Subscribe';
+                buttonElement.classList.remove('is-subscribed'); /* remove class is subscribed*/
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

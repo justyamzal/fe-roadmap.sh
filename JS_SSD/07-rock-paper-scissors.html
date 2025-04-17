@@ -19,13 +19,14 @@
     if between 2/3 and 3/3 => scissors
     -->
 
-    <!-- Rock -->
-    <button onclick="playGame('rock');">Rock</button>
+    <!-- Rock, calling rock function -->
+    <button onclick="playGame('rock');">Rock</button>  
     
-    <!-- Paper -->
+    
+    <!-- Paper, calling paper function -->
     <button onclick="playGame('paper');">Paper</button>
     
-    <!-- Scissors -->
+    <!-- Scissors, calling scissors function -->
     <button onclick="playGame('scissors');">Scissors</button>
 
     <script>
@@ -34,7 +35,7 @@
             const computerMove = pickComputerMove();
 
             // Our Move Statement
-            let result = '';
+            let result = '';  //Variabel result digunakan untuk menyimpan hasil pertandingan (misalnya, 'Tie', 'You Win', atau 'You Lose').
 
             // Rock
             if (playerMove === 'rock') {
@@ -68,7 +69,8 @@
             alert(`You picked ${playerMove}. Computer pick ${computerMove}. ${result}`);
         }
 
-        function pickComputerMove() { //! functiion make our code momre easier to update
+        // function generate random select
+        function pickComputerMove() { //! function make our code more easier to update
             
             const randomNumber = Math.random();
             let computerMove = '';
@@ -86,8 +88,47 @@
                 computerMove = 'scissors';
             }    
             // console.log(computerMove);
-            return computerMove;
+            return computerMove; // Mengembalikan pilihan komputer ke fungsi pemanggil.
         }
+
+
+        /*
+        Mulai
+        |
+        v
+        Pemain Memilih ('rock', 'paper', atau 'scissors')
+        |
+        v
+        Komputer Memilih Secara Acak ('rock', 'paper', atau 'scissors')
+        |
+        v
+        Bandingkan Pilihan Pemain dan Komputer
+        |
+        v
+        Apakah Pilihan Sama? --Ya--> Hasil: Tie
+        |                          |
+        |                          v
+        |                         Tampilkan Hasil
+        |
+        v
+        Apakah Pemain Menang? --Ya--> Hasil: You Win
+        |                          |
+        |                          v
+        |                         Tampilkan Hasil
+        |
+        v
+        Selain Itu --> Hasil: You Lose
+        |
+        v
+        Tampilkan Hasil
+        |
+        v
+        Selesai
+        */
+
+
+        
     </script>
 </body>
 </html>
+

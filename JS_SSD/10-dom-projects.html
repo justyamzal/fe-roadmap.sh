@@ -4,10 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Projects</title>
-</head>
-<body>
 
-    <!-- Subscribe button projects -->
+    <style>
+        body {
+            font-family: arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            gap: 50px;
+        } 
+
+        /* Youtube Subscribe button */
+        .subscribe-button {
+            border: none;
+            background-color: black;
+            color: white;
+            padding: 10px 15px 10px 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .is-subscribed {
+            background-color: rgb(217, 198, 198);  /* 0-225, 0 = less color darker, 255 = more color,lighter*/
+            color: black;
+        }
+
+        /* Amazon calculator */
+        .cost-input{
+            font-size: 15px;
+            padding: 10px;
+        }
+
+        .calculate-button {
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 15px;
+            padding: 12px 15px;
+            cursor: pointer;
+        }
+
+
+    </style> 
+</head> 
+<body >
+
+     <!-- Subscribe button projects -->
 
     <!-- 
     Steps :
@@ -16,11 +61,14 @@
     2. otherwise, change it back => "subscribe"
     
     -->
-    <h1>Youtube Subscribe Button</h1>
+    <div class="container">
+        <h1>Youtube Subscribe Button</h1>
     <button onclick="
     subscribe();
-    " class="js-subscribe-button">Subscribe</button>
+    " class="js-subscribe-button subscribe-button">Subscribe</button>
 
+    </div>
+    
     <!-- Amazon Shipping Calculator -->
     <!--  
     when we click button 
@@ -29,14 +77,16 @@
     3. display total on the page
 
     -->
-    <h1>Amazon Shipping Calculator</h1>
-    <p>Orders under $40 = +$10 Shipping</p>
-    <p>Orders over $40 = Free Shipping </p>
-    <input type="text" placeholder="Cost of order" class="js-cost-input" onkeydown="handleCostKeydown(event)
-    ">
-    <button onclick="calculateTotal();" >Calculate</button>
-    <p class="js-total-cost"></p>
-
+    <div class="container">
+        <h1>Amazon Shipping Calculator</h1>
+        <p>Orders under $40 = +$10 Shipping</p>
+        <p>Orders over $40 = Free Shipping </p>
+        <input type="text" placeholder="Cost of order" class="js-cost-input cost-input" onkeydown="handleCostKeydown(event)
+        ">
+        <button onclick="calculateTotal();" class="calculate-button" >Calculate</button>
+        <p class="js-total-cost"></p>
+    
+    </div>
 
     <script>
         // Subscribe button projects
@@ -49,6 +99,7 @@
             } else {
                 buttonElement.innerHTML = 'Subscribe';
                 buttonElement.classList.remove('is-subscribed'); /* remove class is subscribed*/
+
             }
         }
 

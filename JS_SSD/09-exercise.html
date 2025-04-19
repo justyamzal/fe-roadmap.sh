@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Exercise</title>
+
+    <style>
+        #choose {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <h2>#9a</h2>
+    <!----- 9a ----->
+    <button class="btn">9a</button>
+
+
+    <!----- 9b ----->
+    <h2>#9b</h2>
+    <button class="second">9b</button>
+   
+    <!----- 9c ----->
+    <h2>#9c</h2>
+    <div id="choose">
+        <button id="heads" onclick="document.querySelector('.js-choice').innerHTML = 'You choose: heads';
+            ">heads</button>
+        <button id="tails" onclick="document.querySelector('.js-choice').innerHTML = 'You choose: tails';
+        ">tails</button>
+        <p class="js-choice"></p>
+    </div>
+
+    <!----- 9d ----->
+    <h2>#9d</h2>
+    <input type="text" placeholder=" input your name " class="js-name-input">
+    <button class="btnSubmit" onclick="
+        const inputElement_ = document.querySelector('.js-name-input');
+        document.querySelector('.js-message').innerHTML = `Your name is: ${inputElement_.value}`;
+    ">Submit</button>
+    <p class="js-message"></p>
+
+
+    <!----- 9e ----->
+    <h2>#9e</h2>
+     <input class="js-name-input_" placeholder=" input name "  onkeydown="
+     if (event.key === 'Enter') {
+         // Optional: instead of duplicating this code,
+         // you could also put it in a function.
+         const inputTheElement = document.querySelector('.js-name-input_');
+         document.querySelector('.js-message_').innerHTML = `Your name is: ${inputTheElement.value}`;
+     }">
+     <button onclick="
+     const inputElement = document.querySelector('.js-name-input_');
+     document.querySelector('.js-message_').innerHTML = `Your name is: ${inputTheElement.value}`
+     ">Submit</button>
+     <p class="js-message_"></p>
+
+    <!----- 9f ----->
+     <h2>#9f</h2>
+     <input type="text" placeholder=" input your name " class="js_name_input" onkeydown="
+     if (event.key === 'Enter') {
+        displayMessage();
+     }
+     ">
+    
+    <button onclick="displayMessage();">Submit</button>
+
+    <p class="js_message"></p>
+     
+    <!----- 9g ----->
+    <h2>#9g</h2>
+     <!-- Amazon Shipping Calculator -->
+    <!--  
+    when we click button 
+    1. get the text in the text button
+    2. if amount <$40, add $10
+    3. display total on the page
+    -->
+    <h1>Amazon Shipping Calculator</h1>
+    <p>Orders under $40 = +$10 Shipping</p>
+    <p>Orders over $40 = Free Shipping </p>
+    <input type="text" placeholder="Cost of order" class="js-cost-input" onkeydown="handleCostKeydown(event)"> 
+    <button onclick="calculateTotal();">Calculate</button>
+    <p class="js-total-cost"></p>
+
+    <!-- onkeydown jika Anda membutuhkan respons langsung ketika tombol ditekan, misalnya untuk gameplay atau validasi real-time.  -->
+    <!-- onkeyup jika Anda ingin menangani aksi setelah tombol dilepaskan, misalnya untuk validasi input atau tindakan pasca-input. -->
+
+    <!----- 9h ----->
+    <h2>#9h</h2>
+    <p class="output_9h"></p>
+    <input type="text" placeholder="type something" class="input_9h" onkeyup="
+        const inputElement9h = document.querySelector('.input_9h');
+        document.querySelector('.output_9h').innerHTML = inputElement9h.value; 
+    ">
+
+    <script>
+
+        //--- 9h ---//
+ 
+        //--- 9a ---//
+        const btn9a = document.querySelector('.btn');
+        // console.log(button9a);
+
+        //--- 9b ---//
+        const button9b = document.querySelector('.second').innerHTML = '9b done!';
+        
+        //--- 9f ---//  
+        function displayMessage() {
+            const _inputElement = document.querySelector('.js_name_input');
+            document.querySelector('.js_message').innerHTML =  `Your name is : ${_inputElement.value}`; 
+        }
+
+        //--- 9g ---//
+        //----- Amazon Shipping Calculator -----//
+        function handleCostKeydown() {
+            console.log(event.key);
+            if (event.key === 'Enter') {
+                calculateTotal();
+            }
+        }
+
+        function calculateTotal() {
+            const inputElement = document.querySelector('.js-cost-input');
+            // console.log(inputElement);
+            let cost = Number(inputElement.value); //fix with number function
+            // console.log(cost);
+            // console.log(typeof cost); //!this is the problem, bcs this string
+
+            if (cost < 40) {
+                cost = cost +
+                10; // '25' + '10' = 2510 (type coercion), the value automaticall string when u get from DOM
+                // console.log(cost)
+            }
+
+            document.querySelector('.js-total-cost').innerHTML = `$${cost}`;
+
+        }
+
+       
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html>

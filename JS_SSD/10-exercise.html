@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10 Exercise</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* 10.a */
+        .amazonBtn {
+            padding: 20px;
+        }
+
+        .amazonBtn .addToCart {
+            padding: 10px 50px;
+            font-size: 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: rgb(256, 216, 20);
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            transition: all 0.3s ease;
+            /* Smooth transitions */
+
+        }
+
+        .amazonBtn .addToCart:hover {
+            background-color: rgb(240, 190, 0);
+            /* Darker shade for hover */
+            transform: translateY(-2px);
+            /* Slight upward movement */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            /* Enhanced shadow */
+        }
+
+        .amazonBtn .addToCart:active {
+            transform: translateY(0); /* Reset position */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Reset shadow */
+        }
+
+        /* 10.b */
+        .uberBtn {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .uberBtn .reqBtn,
+        .forLaterBtn {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+
+        }
+
+        .uberBtn #reqBtn {
+            background-color: black;
+            color: white;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .uberBtn #reqBtn:hover { 
+            transform: translateY(-2px); /* Slight upward movement */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);  /* Enhanced shadow */
+        }
+
+        /* Active state for Request now button */
+        .uberBtn #reqBtn:active {
+            transform: translateY(0); /* Reset position */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Reset shadow */
+        }
+
+        .uberBtn #forLaterBtn {
+            background-color: rgb(230, 230, 230);
+            cursor: pointer;
+        }
+
+        .uberBtn #forLaterBtn:hover {
+            transform: translateY(-2px); /* Slight upward movement */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        }
+
+        
+        .uberBtn #forLaterBtn:active {
+            transform: translateY(0); /* Reset position */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 10a. Amazon Button -->
+    <div class="amazonBtn">
+        <button class="addToCart">Add to Cart</button>
+    </div>
+
+    <!-- 10b. Uber Button -->
+    <div class="uberBtn">
+        <button class="reqBtn" id="reqBtn">Request now</button>
+        <button class="forLaterBtn" id="forLaterBtn">Schedule for later</button>
+    </div>
+
+
+
+
+
+    <script></script>
+</body>
+
+</html>

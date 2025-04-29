@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator 10i</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /* ------ 10i. ----- */
+        .calc-container {
+            padding: 45px 30px;
+            /* margin-top: 40px; */
+            /* margin-bottom: 40px; */
+        }
+
+        .calc-btn {
+            height: 60px;
+            width: 60px;
+            border-radius: 60px;
+            border: none;
+            font-size: 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .calc-btn:active {
+            transform: translateY(0);
+            /* Reset position */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Reset shadow */
+        }
+
+        .grey-btn {
+            background-color: rgb(51, 51, 51);
+            color: white;
+        }
+
+        .orange-btn {
+            background-color: rgb(254, 160, 10);
+        }
+
+        .tenI_calc {
+            font-size: 24px;
+            font-weight: bold;
+            width: 20%;
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 10i. Calculator -->
+    <div class="tenI calc-container">
+        <p class="tenI_calc"></p>
+        <div>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('1')">1</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('2')">2</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('3')">3</button>
+            <button class="calc-btn orange-btn" onclick="updateCalculation('+')">+</button>
+        </div>
+
+        <div>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('4')">4</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('5')">5</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('6')">6</button>
+            <button class="calc-btn orange-btn" onclick="updateCalculation('-')">-</button>
+        </div>
+
+        <div>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('7')">7</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('8')">8</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('9')">9</button>
+            <button class="calc-btn orange-btn" onclick="updateCalculation('*')">X</button>
+        </div>
+
+        <div>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('0')">0</button>
+            <button class="calc-btn grey-btn" onclick="updateCalculation('.')">.</button>
+
+            <!-- ( = ) Result Button -->
+            <button class="calc-btn grey-btn" onclick="calculate()">=</button>
+            <button class="calc-btn orange-btn" onclick="updateCalculation('/')">/</button>
+        </div>
+
+        <div>
+            <!-- Clear Button -->
+            <button class="calc-btn grey-btn clear-btn" onclick="clearCalculation()">Clear</button>
+        </div>
+
+    </div>
+
+    <script>
+        // 10i. 
+        let calculation = localStorage.getItem('calculation' || '');
+
+        displayCalculation();
+
+        function updateCalculation(value) {
+            calculation += value;
+
+            displayCalculation();
+            localStorage.setItem('calculation', calculation);
+        }
+
+        //--- Modification function using math.js ---/
+        function calculate() {
+            try {
+                const result = math.evaluate(calculation);
+                calculation = result.toString();
+                displayCalculation();
+                localStorage.setItem('calculation', calculation);
+            } catch (error) {
+                alert("Invalid expression");
+            }
+        }
+
+        //--- Modification function using Eval() ---/
+        // function calculate() {
+        //     calculation = eval(calculation);
+
+        //     // Display the calculation on the page
+        //     // instead of console.log
+        //     displayCalculation();
+
+        //     localStorage.setItem('calculation', calculation);
+        // }
+
+        function clearCalculation() {
+            calculation = '';
+            displayCalculation();
+            localStorage.setItem('calculation', calculation);
+        }
+
+
+        function displayCalculation() {
+            document.querySelector('.tenI_calc').innerHTML = calculation || '0';
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.0/math.min.js"></script>
+
+</body>
+
+</html>

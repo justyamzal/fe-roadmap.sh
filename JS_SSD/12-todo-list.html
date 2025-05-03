@@ -63,7 +63,8 @@
         <div class="todo-input-grid">
             <input type="text" placeholder="Todo name" class="js-name-input name-input">
             <input type="date" class="js-due-date-input due-date-input">
-            <button onclick="addTodo();" class="add-todo-button js-addTodoBtn">Add</button>
+            <!-- without onclick,bcs it will makes the add conflict -->
+            <button class="add-todo-button js-addTodoBtn">Add</button>
         </div>
         <!-- Content display -->
         <div class="js-todo-list todo-grid"></div>
@@ -94,7 +95,7 @@
                 const html = `
                 <div>${name}</div>
                 <div>${dueDate}</div>
-                <button class="delete-todo-button js-deleteTodoBtn"> Delete </button>`;
+                <button class="delete-todo-button js-deleteTodoBtn">Delete</button>`;
                 todoListHTML += html;
                 // splice : metode yang digunakan dalam JS untuk menghapus, menambahkan, mengganti element dlm array
             });
@@ -132,7 +133,7 @@
 
 
         //--- Add ToDo eventlisteners ---//
-        document.querySelector('js-addTodoBtn').addEventListener('click',() => {
+        document.querySelector('.js-addTodoBtn').addEventListener('click',() => {
             addTodo();
         });
 

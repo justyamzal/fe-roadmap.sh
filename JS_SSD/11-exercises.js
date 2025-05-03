@@ -440,14 +440,55 @@ function removeEgg3(foods) {
 ! - console.log(removeEgg(foods)) => ['egg','apple','ham']
 ! - console.log(foods) => ['egg','apple','egg','egg','ham'] 
 */
+function removeEggU(){
+    // To prevent modifying the original array, we
+    // can create a copy of the array using .slice()
+    const foodsCopy = foodsU.slice();
+    const reversedFoods = foodsCopy.reverse();
+        // Advanced technique:
+        // Since foods.slice() results in an array, we can also use .reverse() directly like this:
+        // foods.slice().reverse();
+        
+        // This technique is called "method chaining" because we use one method after another (like a chain of methods).
+    const result = [];
+    let eggsRemoved = 0;
+    
+    for(let i = 0; i < reversedFoods.length; i++ ) {
+        if(reversedFoods[i] == 'egg' && eggsRemoved < 2) {
+            eggsRemoved++;
+            continue;
+        }
+        result.push(reversedFoods[i]);
+    }
+
+    return result.reverse();
+}
+
+const foodsU = ['egg','apple','egg','egg','ham'];
+// console.log(removeEggU(foodsU));
+// console.log(foodsU);
 
 //----- 11v. -----//
 /*
 ! we'll do the famous FizBuzz problem. create a loop that display 1 to 20 in the console. if the number is divisible by 3, display "Fizz" instead of the number. if it's divisible by 5, display 'Buzz' instead. if it's divisible by 3 and 5, display "FizzBuzz" instead. (reminder: divisible by 3 means num %3 === 0)
 ! 1,2, Fizz, 4, Buzz, Fizz, 7, 8....13, 14, Fizzbuzz, 16, 17...
 */
+function fizzBuzz() {
+    for(let i = 0; i <= 20; i++) {
+        // The trick to this problem is to check if the number is divisible by 3 and 5 first. Otherwise, it will always display 'Fizz'.
+        if(i % 3 === 0 && i % 5 === 5) {
+            console.log('Fizzbuzz');
+        } else if (i % 3 === 0) {
+            console.log('Fizz');
+        } else if (i % 5 === 0) {
+            console.log('Buzz');
+        } else {
+            console.log(i);
+        }
+    }
+}
 
-
+// fizzBuzz();
 
 //----- 11w. -----//
 /*
@@ -455,6 +496,114 @@ function removeEgg3(foods) {
 ! - unique(['green','red','blue',red]) => ['green', 'red', 'blue']
 ! - unique(['red','green','green','red']) => ['red','green']
 */
+function findIndex(array,word) {                    //Mendefinisikan fungsi bernama findIndex yang menerima 2 parameter: , array: array yang akan dicari., word: elemen yang dicari di dalam array.
+    for (let i = 0; i < array.length; i++) {        //Memulai perulangan for untuk mengecek setiap elemen di array satu per satu. //Variabel i adalah indeks elemen saat ini.
+        if(array[i] === word) {                      //Jika elemen saat ini (array[i]) sama persis dengan word, kembalikan indeks i //Jika tidak ditemukan, lanjutkan ke elemen berikutnya.
+            return i;                                 // Jika elemen saat ini (array[i]) sama persis dengan word, kembalikan indeks i. Jika tidak ditemukan, lanjutkan ke elemen berikutnya.
+        }
+    }
+    return -1;                                        //Jika sampai akhir perulangan tidak ada elemen yang cocok, kembalikan -1 (artinya tidak ditemukan).
+}
+/*
+findIndex(array, word) : Fungsi ini mencari indeks dari word di dalam array menggunakan perulangan manual. Jika ditemukan, kembalikan indeksnya (misal: 0, 1, dll). Jika tidak ditemukan, kembalikan -1.
+*/
+
+/*
+! Fungsi unique bertujuan untuk menghilangkan duplikasi dari sebuah array string, dengan memertahankan urutan kemunculan pertama dari setiap elemen.
+*/ 
+function unique(array) {
+    const result = [];
+        // Using the findIndex() function from above, we can check if the string is already in the result array. If it's not in the result array (index is -1), then add it to the result array.
+    for(let i = 0; i < array.length; i++) {
+        const word = array[i];                          //Memulai perulangan for untuk mengecek setiap elemen di array satu per satu. Menyimpan elemen saat ini di variabel word.
+
+        if(findIndex(result,word) === -1) {             // Memanggil fungsi findIndex(result, word) untuk memeriksa apakah word sudah ada di result atau belum : Jika findIndex mengembalikan -1 →                                                  word belum ada di result .Jika findIndex mengembalikan angka ≥ 0 → word sudah ada di result .
+            result.push(word);                          //Setelah semua elemen diproses, kembalikan array result yang hanya berisi elemen unik.
+            
+        };
+    }
+
+    return result;
+
+}
+
+console.log(unique(['green', 'red', 'blue', 'red']));
+console.log(unique(['red', 'green', 'green', 'red']));
+
+/* Penjelasan Simpel
+! 1.Fungsi findIndex mencari apakah suatu kata sudah ada di array.
+! 2. Fungsi unique menggunakan findIndex untuk memastikan hanya elemen unik yang ditambahkan ke array result.
+! 3. Urutan dipertahankan : Elemen unik ditambahkan sesuai urutan kemunculan pertama.
+! 4. Tidak ada duplikasi : Elemen yang sama hanya muncul sekali.
+*/ 
+
+/*
+ Mari kita bahas secara rinci:
+
+! 1. Apa itu console.log(unique([...]))?
+console.log(...) adalah perintah untuk mencetak hasil ke konsol.
+unique([...]) adalah pemanggilan fungsi unique dengan input array ['green', 'red', 'blue', 'red'].
+! 2. Parameter Fungsi unique(array)
+Fungsi unique menerima satu parameter:
+
+! function unique(array) {
+    ...
+}
+array : Ini adalah array input yang diberikan saat memanggil fungsi, yaitu ['green', 'red', 'blue', 'red'].
+word : Tidak ada parameter bernama word di fungsi unique. Variabel word hanya digunakan di dalam fungsi unique untuk menyimpan elemen saat ini dari array.
+
+! 3. Bagaimana findIndex(array, word) Bekerja?
+Fungsi findIndex menerima dua parameter:
+
+function findIndex(array, word) {
+    ...
+}
+array : Array tempat kita mencari elemen. Di dalam fungsi unique, ini adalah array result (array kosong yang sedang dibangun).
+word : Elemen yang dicari di dalam array. Di dalam fungsi unique, ini adalah elemen saat ini dari array input (array[i]).
+
+! 4. Contoh Proses dengan Input ['green', 'red', 'blue', 'red']
+* - 1. Iterasi Pertama (i = 0, word = 'green')
+findIndex(result, word) → findIndex([], 'green')
+array = [] (array result masih kosong)
+word = 'green'
+Karena 'green' belum ada di result, findIndex mengembalikan -1.
+
+*-2. Iterasi Kedua (i = 1, word = 'red')
+findIndex(result, word) → findIndex(['green'], 'red')
+array = ['green']
+word = 'red'
+Karena 'red' belum ada di result, findIndex mengembalikan -1.
+
+* -3. Iterasi Ketiga (i = 2, word = 'blue')
+findIndex(result, word) → findIndex(['green', 'red'], 'blue')
+array = ['green', 'red']
+word = 'blue'
+Karena 'blue' belum ada di result, findIndex mengembalikan -1.
+
+* -4. Iterasi Keempat (i = 3, word = 'red')
+findIndex(result, word) → findIndex(['green', 'red', 'blue'], 'red')
+array = ['green', 'red', 'blue']
+word = 'red'
+Karena 'red' sudah ada di result, findIndex mengembalikan 1 (indeks 'red' di array result).
+
+* -5. Kesimpulan
+Input ['green', 'red', 'blue', 'red'] hanya berfungsi sebagai parameter array di fungsi unique.
+Variabel word bukan bagian dari input console.log, melainkan variabel lokal di dalam fungsi unique yang menyimpan elemen saat ini dari array input.
+Fungsi findIndex menerima dua parameter:
+array: array result (tempat elemen unik disimpan).
+word: elemen saat ini dari array input (array[i]).
+
+dihasilkan dari findIndex  bahwa :
+* FindIndex =   [ i0 = green : -1; 
+                * i1 = red : -1 ; 
+                * i2 = blue : -1;
+                * i3 = red : 1] => function unique() =>  // - word = elemen saat ini dari inputArray => if (findIndex(result, word) === -1) {
+            result.push(word);
+        }
+
+*/
+
+
 
 //----- 11x. -----//
 /*
@@ -463,10 +612,10 @@ function removeEgg3(foods) {
 ! - Update the todolist to use localStorage (if we modify the todo list and refresh the page, the todo list should stay the same)
 ! - hint: remember that localStorage only supports strings. You can use JSON.stringify() to conver an array to a string
 
+
+
+
 */
 
-//----- 11t. -----//
-
-//----- 11t. -----//
 
  

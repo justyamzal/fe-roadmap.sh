@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project Add Todo </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="11-exc-11x_2.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1.title {
+            margin-bottom: 20px;
+        } 
+
+        .todo-input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 70px;
+            column-gap: 10px;
+            row-gap: 10px;
+            align-items: center;
+
+        }
+
+        input[type="text"],input[type="date"] {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 8px 8px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .add-btn:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+        }
+        .add-btn:active{
+            transform: translateY(0);
+            /* Reset position */
+            box-shadow: 0 4px 6px rgba(181, 231, 141, 0.805);
+            /* Reset shadow */
+        }
+
+
+        .todo-list {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .todo-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .todo-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .todo-list::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .todo-list::-webkit-scrollbar-thumb:hover{
+            background: #555;
+        }
+
+        .todo-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr 70px 80px;
+            column-gap: 10px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }       
+        
+        .todo-item:last-child  {
+            border-bottom: none;
+        }
+        
+        .edit-btn {
+            background-color: orange;
+            color: white;
+            border: none;
+            padding: 8px 8px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .edit-btn:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+        }
+        .edit-btn:active{
+            transform: translateY(0);
+            /* Reset position */
+            box-shadow: 0 4px 6px rgba(181, 231, 141, 0.805);
+            /* Reset shadow */
+        }
+
+        .delete-btn {
+            background-color: darkred;
+            color: white;
+            border: none;
+            padding: 8px 8px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+        }
+        .delete-btn:active{
+            transform: translateY(0);
+            /* Reset position */
+            box-shadow: 0 4px 6px rgba(181, 231, 141, 0.805);
+            /* Reset shadow */
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="title">Todo List</h1>
+        <div class="todo-input-grid">
+            <input type="text" placeholder="Todo Activity" class="name-input">
+            <input type="date" class="due-date-input">
+            <button id="add-btn" class="add-btn">Add</button>
+        </div>
+        <div class="todo-list"></div>
+    </div>
+
+
+    <script src="11-exc-11x_2.js"></script>
+    <script>
+        // array data
+        let todoList = JSON.parse(localStorage.getItem('todoList')) || [
+            {name:"make diner",dueDate: "2022-12-22"},
+            {name:"wash dishes",dueDate: "2022-12-22"},
+        ];
+        let editIndex = null;
+        // variable for form 
+        const nameInput = document.querySelector('.name-input');
+        const dateInput = document.querySelector('.due-date-input');
+        
+        // render the data
+        function renderToDoList() {
+            const listContainer = document.querySelector('.todo-list');
+            listContainer.innerHTML = '';
+
+            for (let i = 0; i < todoList.length; i++) {
+                const {name, dueDate} = todoList[i];
+                const item = document.createElement("div");
+                item.className = "todo-item";
+                item.innerHTML = `
+                <div>${dueDate}</div>
+                <div>${name}</div>
+                <button class="edit-btn" onlick="setEdit(${i})"><i class="fa-solid fa-pen-to-square"></i> edit</button>
+                <button class="delete-btn" onlick="deleteTodo(${i})"><i class="fa-solid fa-trash"></i> delete </button>
+                `;
+                
+                listContainer.appendChild(item);
+
+            }
+        }
+
+        // edit the item
+        function setEdit(index) {
+            const {name, dueDate} = todoList[index];
+            nameInput.value = name;
+            dateInput.value = dueDate;
+            editIndex = index;
+        }
+
+        //delete the item
+        function deleteTodo(index) {
+            if (confirm("are you sure want to delete this task?")) {
+                todoList.splice(index, 1);
+                saveAndRender();
+            }
+        }
+
+        function saveAndRender(){
+            saveToStorage();
+            renderToDoList();
+        }
+
+        // store data 
+        function saveToStorage(){
+            localStorage.setItem("todoList",JSON.stringify(todoList));
+        }
+
+        // action for add button
+        document.getElementById('add-btn').addEventListener('click',() => {
+            const name = nameInput.value.trim();
+            const dueDate = dateInput.value.trim();
+            
+            //form validation for task name
+            if (!name) {
+                alert("Please enter a task name");
+                return;
+            }
+
+            if(editIndex !== null){
+                //update existing item
+                todoList[editIndex] = {name,dueDate};
+                editIndex = null;
+            } else {
+                //add new item
+                todoList.push({name, dueDate});
+            }
+
+            nameInput.value = "";
+            dateInput.value = "";
+            saveAndRender();
+        });
+
+        //initial render
+        renderToDoList();
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

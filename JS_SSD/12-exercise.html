@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12 - Exercises Advanced Function</title>
+    <title class="title-app">12 - Exercises Advanced Function</title>
 
     <style>
-
         /* 12c. */
         .btnClick {
             margin: 20px 10px 40px;
@@ -18,11 +18,12 @@
             padding: 5px 10px;
         }
 
-        .twelveE{
+        .twelveE {
             /* display: flex; */
             /* justify-content: space-between; */
         }
-        .btnE{
+
+        .btnE {
             margin: 20px 10px 10px;
             padding: 5px 10px;
         }
@@ -37,10 +38,10 @@
             padding: 5px 10px;
         }
 
-        
+
         .displayMsgF {
             margin: 20px 10px 10px;
-            padding: px 5px;
+            padding: 5px 5px;
         }
 
         .displayMsgF2 {
@@ -48,6 +49,25 @@
             /* padding: px 5px; */
         }
 
+
+        .twelveH {
+            margin: 20px 10px 40px;
+
+        }
+
+        .twelveH button {
+            padding: 5px 10px;
+        }
+
+
+        .twelveH2 {
+            /* padding: 5px 10px; */
+            margin: 20px 10px 40px;
+        }
+
+        .twelveH2 button {
+            padding: 5px 10px;
+        }
     </style>
 
     <!-- //----- 12c. -----// -->
@@ -57,52 +77,67 @@
     <button class="btnClick clickbtn32">Click 3.2</button>
     <button class="btnClick clickbtn33">Click 3.3</button>
     <button class="btnClick clickbtn34">Click 3.4</button>
-    
+
     <!-- //----- 12d. -----// -->
-     <div class="twelveD">
+    <div class="twelveD">
         <button class="btnD clickbtnD" onclick="updateBtnD()">Click D</button>
         <button class="btnD clickbtnD2">Click D2</button>
         <button class="btnD clickbtnD3">Click D3</button>
         <button class="btnD clickbtnD4">Click D4</button>
         <button class="btnD clickbtnD5">Click D5</button>
-     </div>
+    </div>
 
-     <!-- //----- 12e. -----//  -->
+    <!-- //----- 12e. -----//  -->
 
-     <div class="twelveE">
+    <div class="twelveE">
         <button class="btnE clickbtnE" onclick="displayMsgE()">Click E</button>
         <p class="displayMsgE msgE"></p>
         <button class="btnE clickBtnE2">Click E2</button>
         <p class="displayMsgE msgE2"></p>
-        <button class="btnE clickBtnE3">Click E3</button>  
+        <button class="btnE clickBtnE3">Click E3</button>
         <p class="displayMsgE msgE3"></p>
-        <button class="btnE clickBtnE4">Click E4</button>  
+        <button class="btnE clickBtnE4">Click E4</button>
         <p class="displayMsgE msgE4"></p>
 
     </div>
 
     <!-- //----- 12f. -----// -->
-     <div class="twelveF">
+    <div class="twelveF">
         <button class="btnF clickBtnF" onclick="displayMsgF()">Click F</button>
         <p class="displayMsgF msgF"></p>
-        
+
         <button class="btnF clickBtnF2">Click F2</button>
         <p class="displayMsgF msgF2"></p>
-        
+
         <button class="btnF clickBtnF3">Click F3</button>
         <p class="displayMsgF msgF3"></p>
-     </div>
-    
-    
+    </div>
+
+    <!-- //----- 12g. -----// -->
+
+
+
+    <!-- //----- 12h. -----// -->
+    <div class="twelveH">
+        <button onclick="messages++">Add</button>
+        <button onclick="messages--">Remove</button>
+    </div>
+
+    <div class="twelveH2">
+        <button id="addH2">Add</button>
+        <button id="removeH2">Remove</button>
+    </div>
+
+
 </head>
+
 <body>
-    
+
 
 
     <script>
-
         //----- 12a. -----//
-       
+
         //! Create a variable called 'add' and save a function inside. this function will console.log(2+3); run the function twice.
         function add() {
             console.log(2 + 3);
@@ -112,58 +147,58 @@
         // add();
 
         //----- 12b. -----//
-        
+
         //! Continuing from exercise 12a, create a function runTwice(fun) that takes a function (as a parameter) and runs it twice
         /* - runTwice(function() {console.log('12b');}; => console.log('12b') twice )
            - runTwice(add); => console.log(5) twice
         */
-        
-        function runTwice(fun) {     //! decide run function twice 
+
+        function runTwice(fun) { //! decide run function twice 
             fun();
             fun();
         }
-       
 
-        runTwice(function(){
+
+        runTwice(function () {
             // console.log('12b');   //! decide the value for parameter function
         });
         // runTwice(add);  //!get 12a function
 
-        
+
         //----- 12c. -----//
 
-        /* Create the button below. When clicking the button,after 1 second, the text inside the button changes to 'Finished!' */ 
+        /* Create the button below. When clicking the button,after 1 second, the text inside the button changes to 'Finished!' */
 
         function updateBtn1() {
             const btn = document.querySelector('.clickbtn1');
-            
-            setTimeout(function(){
+
+            setTimeout(function () {
                 btn.innerHTML = 'Finished!';
-            },1000);
+            }, 1000);
         }
 
         //--- button 2 | Other way/modern way using EventListeners
         const updateBtn2 = document.querySelector('.clickbtn2');
-        updateBtn2.addEventListener('click',() =>{
+        updateBtn2.addEventListener('click', () => {
             setTimeout(() => {
                 updateBtn2.textContent = "Finished!";
-            },1);
+            }, 1);
         });
 
         //--- button 3 | without setTimeout()
-        document.querySelector('.clickbtn3').addEventListener('click',() => {
+        document.querySelector('.clickbtn3').addEventListener('click', () => {
             document.querySelector('.clickbtn3').textContent = "Finished!";
         });
 
         //--- button 3.2 
-        const updatebtn32 =  document.querySelector('.clickbtn32');
-        updatebtn32.addEventListener('click',() => {
+        const updatebtn32 = document.querySelector('.clickbtn32');
+        updatebtn32.addEventListener('click', () => {
             updatebtn32.textContent = "Finished!";
         });
 
         //--- button 3.3 | InnerHTML
         document.querySelector('.clickbtn33').addEventListener('click', function () {
-        this.innerHTML = '<i class="fa-solid fa-check"></i> Finished!';
+            this.innerHTML = '<i class="fa-solid fa-check"></i> Finished!';
         });
 
 
@@ -178,8 +213,8 @@
         //--- button 3.4 | function and RESET 
         function twiceClick() {
             let clicked = false;
-            const btn = document.querySelector('.clickbtn34').addEventListener('click',function(){
-                if(!clicked) {
+            const btn = document.querySelector('.clickbtn34').addEventListener('click', function () {
+                if (!clicked) {
                     this.textContent = "Finished";
                     clicked = true;
                 } else {
@@ -195,81 +230,81 @@
         //----- 12d. -----//
 
         /* Continuing from exercise 12c. modify the button so that when we click it, the text immediately changes to "loading..." and then after 1 second,it changes to 'finished'
-        */
+         */
         //--- button 1 | Using onclick    
-       function updateBtnD(){
-        const button = document.querySelector('.clickbtnD');
-        button.innerHTML = 'Loading....';
-        setTimeout(function(){
-            button.innerHTML = 'Finished';
-        },1000);
-       }
+        function updateBtnD() {
+            const button = document.querySelector('.clickbtnD');
+            button.innerHTML = 'Loading....';
+            setTimeout(function () {
+                button.innerHTML = 'Finished';
+            }, 1000);
+        }
 
-       //--- button 2 | Using EventListeners
-       const updateBtnD2 = document.querySelector('.clickbtnD2');
-       updateBtnD2.addEventListener('click', () =>{
-       updateBtnD2.textContent = 'Loading...';
-        setTimeout(() => {
-            updateBtnD2.textContent = "Finished!";
-        },1000);
-       })
+        //--- button 2 | Using EventListeners
+        const updateBtnD2 = document.querySelector('.clickbtnD2');
+        updateBtnD2.addEventListener('click', () => {
+            updateBtnD2.textContent = 'Loading...';
+            setTimeout(() => {
+                updateBtnD2.textContent = "Finished!";
+            }, 1000);
+        })
 
-       //--- button 3 | without setTimeOut
-            //document.querySelector('.clickbtnD3').addEventListener('click',() => {
-            //document.querySelector('.clickbtnD3').textContent = 'Finished!';
-            //});
+        //--- button 3 | without setTimeOut
+        //document.querySelector('.clickbtnD3').addEventListener('click',() => {
+        //document.querySelector('.clickbtnD3').textContent = 'Finished!';
+        //});
 
-       const updateBtnD3 = document.querySelector('.clickbtnD3');
-       updateBtnD3.addEventListener('click',() => {
-        updateBtnD3.textContent = "Finished!";
-       });
+        const updateBtnD3 = document.querySelector('.clickbtnD3');
+        updateBtnD3.addEventListener('click', () => {
+            updateBtnD3.textContent = "Finished!";
+        });
 
-       //--- button 4 | with this, InnerHTML
+        //--- button 4 | with this, InnerHTML
 
-       const updateBtnD4 = document.querySelector('.clickbtnD4');
-       updateBtnD4.addEventListener('click',function() {
-       this.innerHTML = '<i class="fa-solid fa-check"></i> Finished!';
-       });
+        const updateBtnD4 = document.querySelector('.clickbtnD4');
+        updateBtnD4.addEventListener('click', function () {
+            this.innerHTML = '<i class="fa-solid fa-check"></i> Finished!';
+        });
 
         //--- button 5 | with function
-       function twiceClickD() {
+        function twiceClickD() {
             let clicked = false;
-            const btn = document.querySelector('.clickbtnD5').addEventListener('click',function(){
-            if(!clicked) {
-                this.textContent = "Finished!";
-                clicked = true;
-            } else {
-                this.textContent = "Click D5";
-                clicked = false;
-            }
-        });
-       }
-       twiceClickD();
+            const btn = document.querySelector('.clickbtnD5').addEventListener('click', function () {
+                if (!clicked) {
+                    this.textContent = "Finished!";
+                    clicked = true;
+                } else {
+                    this.textContent = "Click D5";
+                    clicked = false;
+                }
+            });
+        }
+        twiceClickD();
 
 
         //----- 12e. -----// 
 
         // --- Button 1
         /* Create the 'add to cart' button below. when clicking this button, display the message 'Added'below the button. Then, after 2 seconds, remove the message */
-       function displayMsgE() {
+        function displayMsgE() {
             const msgE = document.querySelector('.msgE');
             msgE.innerHTML = 'Added';
 
-            setTimeout(function() {
+            setTimeout(function () {
                 msgE.innerHTML = '';
-            },2000);
-       }
+            }, 2000);
+        }
 
         // --- Button 2 | Using EventListeners
         const displayMsgE2 = document.querySelector('.clickBtnE2');
         let msgE2 = document.querySelector('.msgE2')
-        
+
         displayMsgE2.addEventListener('click', () => {
             msgE2.innerHTML = 'Added';
 
-            setTimeout(()=> {
+            setTimeout(() => {
                 msgE2.innerHTML = '';
-            },2000);
+            }, 2000);
         });
 
 
@@ -280,18 +315,18 @@
         displayMsgE3.addEventListener('click', () => {
             msgE3.textContent = "Added";
         });
- 
+
         // --- Button 4 | function and RESET 
         function displayMsgE4() {
-            
+
             const btn = document.querySelector('.clickBtnE4');
             const msgE4 = document.querySelector('.msgE4');
             let added = false;
 
-            btn.addEventListener('click',function(){
-                if(!added) {
+            btn.addEventListener('click', function () {
+                if (!added) {
                     msgE4.innerHTML = "Added";
-                    added = true; 
+                    added = true;
                 } else {
                     msgE4.innerHTML = "";
                     added = false;
@@ -312,28 +347,28 @@
             let TimeOutId;
             const msgF = document.querySelector('.msgF');
             msgF.innerHTML = 'Added';
-            
+
             // First, cancel the previous timeout so that it doesn't remove the message too quickly.
 
             clearTimeout(TimeOutId);
 
-            TimeOutId = setTimeout(function() {
+            TimeOutId = setTimeout(function () {
                 msgF.innerHTML = '';
-            },2000);
+            }, 2000);
         }
 
         // --- Button 2 | EventListeners
         const displayMsgF2 = document.querySelector('.clickBtnF2');
         let msgF2 = document.querySelector('.msgF2');
         let TimeOutId2;
-        
-        displayMsgF2.addEventListener('click', function() {
-            msgF2.textContent = 'F2 Added';  
+
+        displayMsgF2.addEventListener('click', function () {
+            msgF2.textContent = 'F2 Added';
 
             clearTimeout(TimeOutId2);
-            TimeOutId2 = setTimeout(function(){
+            TimeOutId2 = setTimeout(function () {
                 msgF2.textContent = '';
-            },2000);
+            }, 2000);
         });
 
 
@@ -344,8 +379,8 @@
             const msgF3 = document.querySelector('.msgF3');
             let added = false;
 
-            btn.addEventListener('click',function() {
-                if(!added) {
+            btn.addEventListener('click', function () {
+                if (!added) {
                     msgF3.textContent = "Added";
                     added = true;
                 } else {
@@ -358,11 +393,70 @@
 
         //----- 12g. -----//
         /* Imagine we're creating a messaging app Use set interval() and document.title to create the feature on the right (the title changes every 1 seconds)
-        */
-        
+         */
+        setInterval(function () {
+            if (document.title === 'App') {
+                // document.title = '(2) New messages';
+            } else {
+                // document.title = 'App';
+            }
+        }, 1000);
+
+
 
         //----- 12h. -----//
+        /* Continuing from 12g, instead of displaying "(2) New messages" every time, save the number of messages in a variable: let messages = 2;
+        - use the number  in the variable to determin what title to display.
+        - create 2 buttons 'add' / 'Remove' that increase / decrease the 'messages' variable by 1. 
+        */
+        let messages = 2;
+        setInterval(function () {
+            if (document.title === 'App') {
+                // document.title = `(${messages}) New messages`;
+            } else {
+                // document.title = 'App';
+            }
+        }, 1000);
 
+        //----- 12i. -----//
+        /*
+        - don't let 'messages' go below 0
+        - if the messages === 0 stop changging the title and display "App" as the title
+        - When messages > 0  start changing the title again.
+        */ 
+        function messageHandler() {
+            let messages = 2;
+            let originalTitle = document.title;
+
+            let addMsg = document.getElementById('addH2').addEventListener('click', function () {
+                messages++;
+                // console.log("Messages:", messages); // Opsional, untuk debugging
+            });
+
+            let removeMsg = document.getElementById('removeH2').addEventListener('click', function () {
+                if (messages > 0) {
+                    messages--;
+                    // console.log("Messages:", messages); // Opsional, untuk debugging
+                }
+
+            });
+
+            setInterval(function () {
+                if (messages > 0) {
+                    if (document.title === 'App') {
+                        document.title = `(${messages}) New messages`;
+                    } else {
+                        document.title = 'App';
+                    }
+                } else {
+                    // Kembalikan ke title asli hanya jika messages <= 0
+                    document.title = originalTitle;
+                }
+            }, 5000);
+        }
+
+        messageHandler();
     </script>
 </body>
+
 </html>

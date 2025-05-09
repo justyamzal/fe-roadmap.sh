@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <script>
+        //----- 12j. -----//
+        /* Create an arrow function called 'multiply' that takes 2 numbers, multiplies them together and returns the result
+        - multiply(2,3) => 6
+        - multiply(7,10) => 70
+        */
+
+        const multiply = (a, b) => {
+            return a * b;
+        }
+
+        // console.log(multiply(2,3));
+        // console.log(multiply(7,10));
+
+        //--- model 2
+        // const multiply2 = function (a, b) {
+        //     return a * b;
+        // }
+
+        // console.log(multiply2(2,3));
+        // console.log(multiply2(7,10));
+
+        const multiply3 = (a, b) => {
+            const result = a * b;
+            return result;
+        }
+
+        // console.log(multiply3(2,3));
+        // console.log(multiply3(7,10));
+
+
+        //--- model 4
+        // function multiply4(a, b) {
+        //     return a * b;
+        // }
+
+        // console.log(multiply4(2,3));
+        // console.log(multiply4(7,10));
+
+        
+        //----- 12k. -----//
+
+        /* continuing from exercise 12j, write the arrow function on one line(if you are already did this, skip exercise) */
+        const multiplies = (a, b) => {return a * b;}
+        // console.log(multiplies(2,3));
+        // console.log(multiplies(7,10));
+
+        //----- 12L. -----//
+    
+        /*
+        Create a function countPositive(nums) that takes array of numbers and return how many numbers in the array greater than 0. create this function using .forEach() instead of loop 
+        - countPositive([1, -3, 5]) => 2
+        - countPositive([-2,3,-5,7,10]) => 3
+        */
+
+        function countPositive(nums) {
+            let positiveNumbers = 0;
+            // When there is only 1 parameter, the brackets are optional. So we can also write: num => { ... }
+            nums.forEach((nums) => {
+                if (nums > 0 ) {
+                    positiveNumbers++;
+                } 
+            });
+            return positiveNumbers;
+        }
+
+        // console.log(countPositive([1, -3, 5])); // 2
+        // console.log(countPositive([-2,3,-5,7,10])); // 3
+
+        function countPositive2(nums) {
+            let positiveNumbers = 0;
+
+            nums.forEach(num => num > 0 && positiveNumbers++);
+            return positiveNumbers;
+        }
+
+        // console.log(countPositive2([1, -3, 5])); // 2
+        // console.log(countPositive2([-2,3,-5,7,10])); // 3
+        
+        //----- For Of 
+        function countPositive3(nums) {
+            let positiveNumbers = 0;
+
+            for (const num of nums) {
+                if (num > 0) {
+                    positiveNumbers++;
+                }
+            }
+            return positiveNumbers;
+        }
+
+        // console.log(countPositive3([1, -3, 5])); // 2
+        // console.log(countPositive3([-2,3,-5,7,10])); // 3
+        
+
+        //----- 12M. -----//
+
+        /* Create a function addNum(array,num) that takes an array of numbers and return an array where each number is increased by 'num'. create this function using .map() instead of loop 
+        - addNum([1,2,3],2) => [3,2,4]
+        - addNum([-2,-1,0,99],2) => [0,1,2,101]
+        bonus : try to use the one-line shorcut in your solution
+        */
+        function addNum(array,num) {  //! array: kumpulan angka (misalnya [1, 2, 3]) // num: angka yang ingin ditambahkan ke setiap elemen
+        //! When there is only 1 parameter, the brackets are optional. So we can also write: value => value + num
+            return array.map((value) => value + num); 
+            
+            //.map() adalah metode bawaan dari array untuk membuat array baru dengan memodifikasi setiap elemen. 
+            // (value) / satuan dari array => value + num adalah arrow function yang menambahkan num ke setiap elemen dalam array. 
+            
+        }
+
+        // console.log(addNum([1, 2, 3], 2));
+        // console.log(addNum([-2, -1, 0, 99], 2));
+        
+
+        //----- Model 2
+        const addNum2 = (array, num) => array.map(value => value + num);
+
+        // console.log(addNum2([1, 2, 3], 2));
+        // console.log(addNum2([-2, -1, 0, 99], 2));
+        
+        //----- Model 3 | Model Blok
+        function addNum3 (array,num) {
+            return array.map(function(value){ 
+                return value + num;
+            });
+        }
+
+        // console.log(addNum3([1, 2, 3], 2));
+        // console.log(addNum3([-2, -1, 0, 99], 2));
+
+
+        //----- 12N. -----//
+       
+        /*
+         Create a function removeEgg(foods) that takes an array of strings and returns an array where the string 'egg' is removed. create this fuction using .filter() instead of a loop
+        - removeEgg(['egg','apple','egg','egg','ham']) => ['apple','ham']
+        */
+
+        function removeEgg(foods) {
+        // If food is 'egg', the inner function returns false and the food is not included in the result. Otherwise, the inner function returns true and the food is included in the result. 
+            return foods.filter((food) => food !== 'egg');
+        }
+
+        // console.log(removeEgg(['egg','apple','egg','egg','ham'])); // ['apple','ham']
+
+
+        //----- Model 2
+        const removeEgg2 = (foods) => foods.filter(food => food !== 'egg');
+        // console.log(removeEgg2(['egg', 'apple', 'egg', 'egg', 'ham']));
+
+        //----- Model 3
+        const removeEgg3 = function(foods) {
+            return foods.filter((food) => food !== 'egg');
+        }
+        // console.log(removeEgg3(['egg', 'apple', 'egg', 'egg', 'ham']));  
+
+        //----- Model 4
+        function removeEgg4(foods) {
+            return foods.filter(function(food){
+                return food !== 'egg';
+            });
+        }
+        // console.log(removeEgg4(['egg', 'apple', 'egg', 'egg', 'ham']));  // ['apple','ham']
+
+
+        //----- 12o. -----//
+        /* Update exercise 12N to only remove the first 2 eggs from the array. again use .filter() istead of a loop
+        - removeEgg(['egg','apple','egg','eeg','ham']) => ['apple','egg','ham']
+        */  
+
+        function removeEggFor2(foods) {
+            let eggsRemoved = 0; //! Kita buat variabel eggCount = 0 untuk mengingat berapa banyak 'egg' yang sudah kita hapus.
+            return foods.filter((food) => {
+                if(food == 'egg' && eggsRemoved < 2) {
+                    eggsRemoved++;
+                    return false; //Jika elemen adalah 'egg' DAN kita belum hapus 2 kali → hapus dengan return false // // hapus telur pertama dan kedua
+                } 
+
+                return true; //Kalau bukan 'egg' atau sudah hapus 2 kali → biarkan tetap ada dengan return true // biarkan sisanya
+            });
+        }
+
+        // console.log(removeEgg(['egg', 'apple', 'egg', 'egg', 'ham']));
+
+        //----- Model 2
+        function removeEggFor2_(foods) {
+            let count = 0;
+            return foods.filter(f => f !== 'egg' || ++count > 2) //f !== 'egg' → kalau bukan telur, tetap tampilkan // ++count > 2 → kalau sudah hapus 2 telur, tampilkan juga telur berikutnya
+
+        }
+        // console.log(removeEggFor2_(['egg', 'apple', 'egg', 'egg', 'ham']));
+
+
+    </script>
+</body>
+
+</html>

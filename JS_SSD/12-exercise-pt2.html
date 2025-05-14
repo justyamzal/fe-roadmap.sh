@@ -7,12 +7,21 @@
     <title>Document</title>
 
     <style>
-
+       button {
+            padding: 5px 10px ;
+            margin: 10px;
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- //----- 12p. -----// -->
+     <button class="startBtn" onclick="updStartBtn();">Start</button>
+
+     <!-- //----- 12q. -----// -->
+     <button class="startBtn2">Start</button>
+     <button class="startBtn3">Start</button>
 
 
     <script>
@@ -208,7 +217,46 @@
         }
         // console.log(removeEggFor2_(['egg', 'apple', 'egg', 'egg', 'ham']));
 
+        //----- 12p. -----//
+        /* Go back to the earlier exercises in lesson 12 (12c -12i) and switch the code to use arrow functions. (when passing a function into another function, use arrow the functions. otherwise, you can use either syntax) */
+        function updStartBtn() {
+            const btn = document.querySelector('.startBtn');
+            // The function below was changed
+            // to an arrow function.
+            setTimeout(() => {
+                btn.innerHTML = 'Finished!';
+            },1000);
+        }        
 
+        //----- 12q. -----//
+
+        /* Go back to the earlier exercise in lesson 12(12c - 12i*) and instead of using onclick = "", switch to use .addEventListener('click,...) */
+
+        function updateBtn2(){
+            const btn = document.querySelector('.startBtn2');
+            
+            btn.addEventListener('click', function() {
+                setTimeout(() => {
+                    btn.innerHTML = "Finished";
+                },1000);
+            });
+        }
+        updateBtn2();
+
+        //---- model 2
+        function updateBtn3() {
+            const btn = document.querySelector('.startBtn3').addEventListener('click', () => {
+                setTimeout(() => {
+                    btn.innerHTML = 'Finished!';
+                });
+            });
+        }
+
+        //----- 12r. -----//
+        /* Make a copy of the Rock Paper Scissors game into the files 12r.html,12r,css, 12r.js 
+            - update the <link> and <script> element to load 12r.css and 12r.js.
+            - also, make a copy of the imagaes and make sure they load properly
+        */
     </script>
 </body>
 

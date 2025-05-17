@@ -63,7 +63,7 @@
         // console.log(multiply4(2,3));
         // console.log(multiply4(7,10));
 
-        
+
         //----- 12k. -----//
 
         /* continuing from exercise 12j, write the arrow function on one line(if you are already did this, skip exercise) */
@@ -72,9 +72,9 @@
         // console.log(multiplies(7,10));
 
         //----- 12L. -----//
-    
+
         /*
-        Create a function countPositive(nums) that takes array of numbers and return how many numbers in the array greater than 0. create this function using .forEach() instead of loop 
+        Create a function countPositive(nums) that takes array of numbers and return how many numbers in the array greater than 0. create this function using .forEach() instead of loop
         - countPositive([1, -3, 5]) => 2
         - countPositive([-2,3,-5,7,10]) => 3
         */
@@ -85,7 +85,7 @@
             nums.forEach((nums) => {
                 if (nums > 0 ) {
                     positiveNumbers++;
-                } 
+                }
             });
             return positiveNumbers;
         }
@@ -102,8 +102,8 @@
 
         // console.log(countPositive2([1, -3, 5])); // 2
         // console.log(countPositive2([-2,3,-5,7,10])); // 3
-        
-        //----- For Of 
+
+        //----- For Of
         function countPositive3(nums) {
             let positiveNumbers = 0;
 
@@ -117,37 +117,37 @@
 
         // console.log(countPositive3([1, -3, 5])); // 2
         // console.log(countPositive3([-2,3,-5,7,10])); // 3
-        
+
 
         //----- 12M. -----//
 
-        /* Create a function addNum(array,num) that takes an array of numbers and return an array where each number is increased by 'num'. create this function using .map() instead of loop 
+        /* Create a function addNum(array,num) that takes an array of numbers and return an array where each number is increased by 'num'. create this function using .map() instead of loop
         - addNum([1,2,3],2) => [3,2,4]
         - addNum([-2,-1,0,99],2) => [0,1,2,101]
         bonus : try to use the one-line shorcut in your solution
         */
         function addNum(array,num) {  //! array: kumpulan angka (misalnya [1, 2, 3]) // num: angka yang ingin ditambahkan ke setiap elemen
         //! When there is only 1 parameter, the brackets are optional. So we can also write: value => value + num
-            return array.map((value) => value + num); 
-            
-            //.map() adalah metode bawaan dari array untuk membuat array baru dengan memodifikasi setiap elemen. 
-            // (value) / satuan dari array => value + num adalah arrow function yang menambahkan num ke setiap elemen dalam array. 
-            
+            return array.map((value) => value + num);
+
+            //.map() adalah metode bawaan dari array untuk membuat array baru dengan memodifikasi setiap elemen.
+            // (value) / satuan dari array => value + num adalah arrow function yang menambahkan num ke setiap elemen dalam array.
+
         }
 
         // console.log(addNum([1, 2, 3], 2));
         // console.log(addNum([-2, -1, 0, 99], 2));
-        
+
 
         //----- Model 2
         const addNum2 = (array, num) => array.map(value => value + num);
 
         // console.log(addNum2([1, 2, 3], 2));
         // console.log(addNum2([-2, -1, 0, 99], 2));
-        
+
         //----- Model 3 | Model Blok
         function addNum3 (array,num) {
-            return array.map(function(value){ 
+            return array.map(function(value){
                 return value + num;
             });
         }
@@ -157,14 +157,14 @@
 
 
         //----- 12N. -----//
-       
+
         /*
          Create a function removeEgg(foods) that takes an array of strings and returns an array where the string 'egg' is removed. create this fuction using .filter() instead of a loop
         - removeEgg(['egg','apple','egg','egg','ham']) => ['apple','ham']
         */
 
         function removeEgg(foods) {
-        // If food is 'egg', the inner function returns false and the food is not included in the result. Otherwise, the inner function returns true and the food is included in the result. 
+        // If food is 'egg', the inner function returns false and the food is not included in the result. Otherwise, the inner function returns true and the food is included in the result.
             return foods.filter((food) => food !== 'egg');
         }
 
@@ -179,7 +179,7 @@
         const removeEgg3 = function(foods) {
             return foods.filter((food) => food !== 'egg');
         }
-        // console.log(removeEgg3(['egg', 'apple', 'egg', 'egg', 'ham']));  
+        // console.log(removeEgg3(['egg', 'apple', 'egg', 'egg', 'ham']));
 
         //----- Model 4
         function removeEgg4(foods) {
@@ -193,7 +193,7 @@
         //----- 12o. -----//
         /* Update exercise 12N to only remove the first 2 eggs from the array. again use .filter() istead of a loop
         - removeEgg(['egg','apple','egg','eeg','ham']) => ['apple','egg','ham']
-        */  
+        */
 
         function removeEggFor2(foods) {
             let eggsRemoved = 0; //! Kita buat variabel eggCount = 0 untuk mengingat berapa banyak 'egg' yang sudah kita hapus.
@@ -201,7 +201,7 @@
                 if(food == 'egg' && eggsRemoved < 2) {
                     eggsRemoved++;
                     return false; //Jika elemen adalah 'egg' DAN kita belum hapus 2 kali → hapus dengan return false // // hapus telur pertama dan kedua
-                } 
+                }
 
                 return true; //Kalau bukan 'egg' atau sudah hapus 2 kali → biarkan tetap ada dengan return true // biarkan sisanya
             });
@@ -226,7 +226,7 @@
             setTimeout(() => {
                 btn.innerHTML = 'Finished!';
             },1000);
-        }        
+        }
 
         //----- 12q. -----//
 
@@ -234,7 +234,7 @@
 
         function updateBtn2(){
             const btn = document.querySelector('.startBtn2');
-            
+
             btn.addEventListener('click', function() {
                 setTimeout(() => {
                     btn.innerHTML = "Finished";
@@ -253,10 +253,13 @@
         }
 
         //----- 12r. -----//
-        /* Make a copy of the Rock Paper Scissors game into the files 12r.html,12r,css, 12r.js 
+        /* Make a copy of the Rock Paper Scissors game into the files 12r.html,12r,css, 12r.js
             - update the <link> and <script> element to load 12r.css and 12r.js.
             - also, make a copy of the imagaes and make sure they load properly
         */
+
+        
+
     </script>
 </body>
 

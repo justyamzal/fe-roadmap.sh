@@ -69,17 +69,11 @@
 
   <div class="container">
         <p class="title">Rock Paper Scissors</p>
-        <button onclick="
-        
-      " class="move-button rockBtn"><img src="images/rock-emoji.png" class="move-icon"></button>
+        <button class="move-button rockBtn"><img src="images/rock-emoji.png" class="move-icon"></button>
 
-        <button onclick="
-        
-      " class="move-button paperBtn"><img src="images/paper-emoji.png" class="move-icon"></button>
+        <button class="move-button paperBtn"><img src="images/paper-emoji.png" class="move-icon"></button>
 
-        <button onclick="
-        
-      " class="move-button scissorsBtn"><img src="images/scissors-emoji.png" class="move-icon"></button>
+        <button class="move-button scissorsBtn"><img src="images/scissors-emoji.png" class="move-icon"></button>
 
         <p class="js-result result"></p>
         <p class="js-moves"></p>
@@ -115,7 +109,7 @@
           isAutoPlay = true;
 
       } else {
-          clearInterval(intervalId);   
+          clearInterval(intervalId);
           autoPlayBtn.innerHTML = 'Auto Play';
           isAutoPlay = false;
       }
@@ -127,7 +121,7 @@
       losses: 0,
       ties: 0
     };
-    
+
     updateScoreElement();
 
     /*
@@ -154,7 +148,7 @@
     });
 
     //--- Keydown Eventlistners ---//
-    document.body.addEventListener('keydown',(event) => { 
+    document.body.addEventListener('keydown',(event) => {
       if (event.key === 'r') {
         playGame('rock');
       } else if (event.key === 'p') {
@@ -162,7 +156,7 @@
       } else if(event.key === 's') {
         playGame('scissors');
       }
-    }); 
+    });
 
 
 

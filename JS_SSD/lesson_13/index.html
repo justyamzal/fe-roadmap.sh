@@ -7,27 +7,50 @@
       smaller screen sizes like a phone or a tablet). -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amazone</title>
+  <title>amazon</title>
   <!-- Load a font called Roboto from Google Fonts. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <!-- Here are the CSS files for this page. -->
   <link rel="stylesheet" href="styles/shared/general.css">
-  <link rel="stylesheet" href="styles/shared/amazone-header.css">
-  <link rel="stylesheet" href="styles/pages/amazone.css">
+  <link rel="stylesheet" href="styles/shared/amazon-header.css">
+  <link rel="stylesheet" href="styles/pages/amazon.css">
 
 </head>
 
 <body>
-      <div class="amazone-header">
-        <div class="amazone-header-left-section">
+      <!--  Amazon-header -->
+      <div class="amazon-header">
+        <div class="amazon-header-left-section">
           <a href="index.html" class="header-link">
-            <img class="amazone-logo" src="images/amazone-logo-white.png" alt=" amazone-logo">
-            <img class="amazone-mobile-logo" src="images/amazone-mobile-logo-white.png" alt="">
+            <img class="amazon-logo" src="images/amazon-logo-white.png" alt=" amazon-logo">
+            <img class="amazon-mobile-logo" src="images/amazon-mobile-logo-white.png" alt="">
           </a>
         </div>
+
+        <div class="amazon-header-middle-section">
+          <input type="text" class="search-bar" placeholder="search">
+          <button class="search-button" type="text" placeholder="Search">
+            <img src="search-icon" src="images/icons/search-icon.png" alt="">
+          </button>
+        </div>
+
+        <div class="amazon-header-right-section">
+          <a href="order-link header-link" href="orders.html">
+            <span class="return-text">Return</span>
+            <span class="order-text">& Orders</span>
+          </a>
+        </div>
+
+        <a href="cart-link header-link" href="checkout.html">
+            <img class="cart-icon" src="images/icons/cart-icon.png" alt="">
+            <div class="cart-quantity">3</div>
+            <div class="cart-text">Cart</div>
+        </a>
       </div>
+      <!-- End of Amazon header -->
+
 
 </body>
 

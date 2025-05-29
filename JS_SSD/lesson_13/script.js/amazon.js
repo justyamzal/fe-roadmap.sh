@@ -1,7 +1,11 @@
 let productsHTML = '';
 
+
+
 products.forEach((product) => {
   productsHTML += `
+    <!-- ----- Images -->
+
     <div class="product-container">
       <div class="product-image-container">
         <img class="product-image"
@@ -12,13 +16,18 @@ products.forEach((product) => {
         ${product.name}
       </div>
 
+      <!-- ----- Rating label -->
+
       <div class="product-rating-container">
+      <!-- so this number * 10 is converting the rating into non decimal,so it will fit with the numbers on images folder -->
         <img class="product-rating-stars"
           src="images/ratings/rating-${product.rating.stars * 10}.png">
         <div class="product-rating-count link-primary">
           ${product.rating.count}
         </div>
       </div>
+
+      <!-- --- Price Tag, toFixed shows 2 number after coma, 100 cents = 1 dollar -->
 
       <div class="product-price">
         $${(product.priceCents / 100).toFixed(2)}
@@ -46,6 +55,8 @@ products.forEach((product) => {
         Added
       </div>
 
+      <! ----- Data Attribute : is jst another HTML attribte, allow us to attach any information to an element -->
+
       <button class="add-to-cart-button button-primary js-add-to-cart"
       data-product-id="${product.id}">
         Add to Cart
@@ -54,12 +65,24 @@ products.forEach((product) => {
   `;
 });
 
+// getting products grid element class for eventlisteners from index.html and adding couple element then sending back to index.html
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-document.querySelectorAll('.js-add-to-cart')
+// for cart function, refers to add to cart button
+/* steps :
+  1. check if the product is already in the cart
+  2.if it is in the cart, increate the quantity
+  3. if it is not in the cart, add it to he cart with quantity 1
+  4. update the cart quantity in the header
+*/
+
+ document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
+      //! Data Attribute : is jst another HTML attribte, allow us to attach any information to an element
+      //dataset = basically gives us all the data attribute that are attached to this button
       const productId = button.dataset.productId;
+
 
       let matchingItem;
 
@@ -78,6 +101,12 @@ document.querySelectorAll('.js-add-to-cart')
         });
       }
 
+
+      // Steps :
+      /* 1.calculate the quantity
+      2.put the quantity on the page
+
+      */
       let cartQuantity = 0;
 
       cart.forEach((item) => {
@@ -86,5 +115,8 @@ document.querySelectorAll('.js-add-to-cart')
 
       document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity;
+
+      console.log(cartQuantity);
+      console.log(cart);
     });
   });

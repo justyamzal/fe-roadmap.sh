@@ -19,10 +19,11 @@
     <link rel="stylesheet" href="styles/pages/checkout/checkout.css">
   </head>
   <body>
+    <!-- Checkout Header -->
     <div class="checkout-header">
       <div class="header-content">
         <div class="checkout-header-left-section">
-          <a href="index.html">
+          <a href="amazon.html">
             <img class="amazon-logo" src="images/amazon-logo.png">
             <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png">
           </a>
@@ -30,7 +31,7 @@
 
         <div class="checkout-header-middle-section">
           Checkout (<a class="return-to-home-link"
-            href="amazon.html">3 items</a>)
+            href="index.html">0 items</a>)
         </div>
 
         <div class="checkout-header-right-section">
@@ -39,12 +40,17 @@
       </div>
     </div>
 
+    <!-- Main Content -->
     <div class="main">
       <div class="page-title">Review your order</div>
 
       <div class="checkout-grid">
-        <div class="order-summary">
-          <div class="cart-item-container">
+        <!-- Order Summary (Cart Items) -->
+        <div class="order-summary js-cart-items">
+          <!--
+          ! Cart items will be dynamically inserted here by checkout.js
+          -->
+          <!-- <div class="cart-item-container">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -118,9 +124,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="cart-item-container">
+          <!-- <div class="cart-item-container">
             <div class="delivery-date">
               Delivery date: Wednesday, June 15
             </div>
@@ -192,37 +198,45 @@
                 </div>
               </div>
             </div>
+          </div> -->
+
+          <div class="empty-cart-message">
+              Your Amazon Cart is empty
+              <a href="index.html" class="button-primary" style="display: inline-block; margin-top: 15px; padding: 5px; text-decoration:none;">
+                Shop now
+              </a>
           </div>
         </div>
 
+        <!-- ! Payment Summary -->
         <div class="payment-summary">
           <div class="payment-summary-title">
             Order Summary
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
-            <div class="payment-summary-money">$42.75</div>
+            <div>Items (0):</div>
+            <div class="payment-summary-money">$0.00</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$4.99</div>
+            <div class="payment-summary-money">$0.00</div>
           </div>
 
           <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
-            <div class="payment-summary-money">$47.74</div>
+            <div class="payment-summary-money">$0.00</div>
           </div>
 
-          <div class="payment-summary-row">
+          <div class="payment-summary-row ">
             <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">$4.77</div>
+            <div class="payment-summary-money">$0.00</div>
           </div>
 
           <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">$52.51</div>
+            <div class="payment-summary-money">00.00</div>
           </div>
 
           <button class="place-order-button button-primary">
@@ -231,5 +245,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Javascript files -->
+     <script src="data/products.js"></script>
+     <script src="checkout.html"></script>
   </body>
 </html>

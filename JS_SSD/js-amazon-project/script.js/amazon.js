@@ -50,7 +50,7 @@ products.forEach((product) => {
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-to-cart-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -68,6 +68,8 @@ products.forEach((product) => {
 // getting products grid element class for eventlisteners from index.html and adding couple element then sending back to index.html
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+const addedMessageTimeouts = {};
+
 // for cart function, refers to add to cart button
 /* steps :
   1. check if the product is already in the cart
@@ -78,57 +80,78 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
  document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
+    let addedMessageTimeoutId;
     button.addEventListener('click', () => {
       //! Data Attribute : is jst another HTML attribte, allow us to attach any information to an element
-      //dataset = basically gives us all the data attribute that are attached to this button
+      //* dataset = basically gives us all the data attribute that are attached to this button
       const productId = button.dataset.productId;
-
-
+      // const productId = button.dataset;
+      
       let matchingItem;
-
+      
       cart.forEach((item) => {
         if (productId === item.productId) {
           matchingItem = item;
         }
       });
 
+      //----- 13d. -----// 
+      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
+      //----- 13e. -----//
+      const quantity = Number(quantitySelector.value);
+      //  console.log(quantity);  
+
       if (matchingItem) {
-        matchingItem.quantity += 1;
+        matchingItem.quantity += quantity;
       } else {
         cart.push({
-          productId: productId,
-          quantity: 1
+
+          productId,
+          quantity
         });
       }
-
-
       // Steps :
       /* 1.calculate the quantity
-      2.put the quantity on the page
+      2.put the quantity on the page*/
 
-      */
       let cartQuantity = 0;
 
       cart.forEach((item) => {
         cartQuantity += item.quantity;
       });
 
-      document.querySelector('.js-cart-quantity')
-        .innerHTML = cartQuantity;
-
+      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+      
+      //----- 13f. -----//
       // console.log(cartQuantity);
       // console.log(cart);
-
-      //----- 13d. -----// 
-      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
-     
-      //----- 13e. -----//
-      const quantity = Number(quantitySelector.value);
-       console.log(quantity);  
-
-      //----- 13f. -----//
       
-      //
+      //----- 13g. -----//
+      //----- 13h. -----//
+      //----- 13i. -----//
+      //----- 13k. -----//
+      //----- 13l. -----//
+      const addedMessage = document.querySelector(`.js-added-to-cart-${productId}`);
+
+      addedMessage.classList.add('added-to-cart-visible'); 
+      
+      // setTimeout(() => {
+      //   addedMessage.classList.remove('added-to-cart-visible');
+      // }, 2000);
+
+      // product. If there is, we should stop it.
+      const previousTimeoutId = addedMessageTimeouts[productId];
+      if (previousTimeoutId) {
+        clearTimeout(previousTimeoutId);
+      }
+
+      const timeoutId = setTimeout(() => {
+        addedMessage.classList.remove('added-to-cart-visible');
+      }, 2000);
+
+      // Save the timeoutId for this product
+      // so we can stop it later if we need to.
+      addedMessageTimeouts[productId] = timeoutId;
 
     });
   });

@@ -1,9 +1,20 @@
 import {cart} from '../data/cart.js';
 import {products} from '../data/products.js'
+import {addToCart} from '../data/cart.js'
+
+
+function updateCartQuantity(){
+  let cartQuantity = 0;
+      cart.forEach((item) => {
+        cartQuantity += item.quantity;
+      });
+      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+      
+}
+
+
 
 let productsHTML = '';
-
-
 
 products.forEach((product) => {
   productsHTML += `
@@ -73,8 +84,9 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 const addedMessageTimeouts = {};
 
-// for cart function, refers to add to cart button
-/* steps :
+
+/*for cart function, refers to add to cart button 
+steps :
   1. check if the product is already in the cart
   2.if it is in the cart, increate the quantity
   3. if it is not in the cart, add it to he cart with quantity 1
@@ -87,47 +99,21 @@ const addedMessageTimeouts = {};
     button.addEventListener('click', () => {
       //! Data Attribute : is jst another HTML attribte, allow us to attach any information to an element
       //* dataset = basically gives us all the data attribute that are attached to this button
+      
       const productId = button.dataset.productId;
+      addToCart(productId);
+      updateCartQuantity();
       // const productId = button.dataset;
+
+      // Steps :/* 1.calculate the quantity 2.put the quantity on the page*/
+
       
-      let matchingItem;
-      
-      cart.forEach((item) => {
-        if (productId === item.productId) {
-          matchingItem = item;
-        }
-      });
 
-      //----- 13d. -----// 
-      const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`);
-      //----- 13e. -----//
-      const quantity = Number(quantitySelector.value);
-      //  console.log(quantity);  
 
-      if (matchingItem) {
-        matchingItem.quantity += quantity;
-      } else {
-        cart.push({
 
-          productId,
-          quantity
-        });
-      }
-      // Steps :
-      /* 1.calculate the quantity
-      2.put the quantity on the page*/
-
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-
-      document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-      
       //----- 13f. -----//
-      // console.log(cartQuantity);
-      // console.log(cart);
+      // console.log(cartQuantity);  // console.log(cart);
+     
       
       //----- 13g. -----//
       //----- 13h. -----//
@@ -152,8 +138,7 @@ const addedMessageTimeouts = {};
         addedMessage.classList.remove('added-to-cart-visible');
       }, 2000);
 
-      // Save the timeoutId for this product
-      // so we can stop it later if we need to.
+      // Save the timeoutId for this product // so we can stop it later if we need to.
       addedMessageTimeouts[productId] = timeoutId;
 
     });
